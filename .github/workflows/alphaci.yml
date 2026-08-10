@@ -32,7 +32,7 @@ permissions:
 
 jobs:
   alphaci:
-    uses: cicd-external-project/cicd-workflow/.github/workflows/pipeline-master.yml@educ-v1
+    uses: Alpha-Explora/alphaci-educ-workflow/.github/workflows/pipeline-master.yml@educ-v1
     with:
       language: nextjs
       # ── CONFORMANCE HARNESS, not what a real repository looks like ─────────
