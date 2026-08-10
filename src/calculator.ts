@@ -10,14 +10,17 @@ export function add(a: number, b: number): number {
 }
 
 export function subtract(a: number, b: number): number {
-  throw new Error('TODO: implement subtract');
+  return a - b;
 }
 
 export function multiply(a: number, b: number): number {
-  throw new Error('TODO: implement multiply');
+  return a * b;
 }
 
 /** Must refuse to divide by zero — see the pending test. */
 export function divide(a: number, b: number): number {
-  throw new Error('TODO: implement divide');
+  if (b === 0) {
+    throw new Error('Cannot divide by zero');
+  }
+  return a / b;
 }
