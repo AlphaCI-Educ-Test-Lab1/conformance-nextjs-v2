@@ -55,7 +55,10 @@ jobs:
       # PROVISIONAL because of it. A real assignment leaves both of these lines
       # off and gets the real backend.
       assignment-id: conformance-demo
-      api-base-url: https://raw.githubusercontent.com/AlphaCI-Educ-Test-Lab1/conformance-hidden-tests/main
+      # Pages, not raw.githubusercontent: raw answers 404 to any request carrying
+      # an Authorization header it does not recognise, and this action always
+      # sends CI_TOKEN as a Bearer. Pages ignores the header and serves the file.
+      api-base-url: https://alphaci-educ-test-lab1.github.io/conformance-hidden-tests
     secrets:
       CI_TOKEN: ${{ secrets.CI_TOKEN }}
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
