@@ -35,6 +35,27 @@ jobs:
     uses: cicd-external-project/cicd-workflow/.github/workflows/pipeline-master.yml@educ-v1
     with:
       language: nextjs
+      # ── CONFORMANCE HARNESS, not what a real repository looks like ─────────
+      #
+      # Stage 05 fetches the teacher's suite from the AlphaCI backend at
+      # `{api-base-url}/ci/hidden-tests`. That backend is not deployed — the
+      # host does not resolve — so in every conformance run to date the stage
+      # reported "not available" and the 25% it is worth was excluded from the
+      # mark. The largest single component of the grade had therefore never
+      # been observed running.
+      #
+      # Pointing api-base-url at a static file that serves the SAME JSON
+      # contract exercises the whole of stage 05 for real: the fetch, the path
+      # safety checks, writing the suite into the gitignored inject directory,
+      # the extraction canary, the tamper hash, running it against the
+      # student's code, and scoring the result.
+      #
+      # What it does NOT prove is the backend's own endpoint, its authorisation
+      # or its rubric — the rubric still falls back, and this run is marked
+      # PROVISIONAL because of it. A real assignment leaves both of these lines
+      # off and gets the real backend.
+      assignment-id: conformance-demo
+      api-base-url: https://raw.githubusercontent.com/AlphaCI-Educ-Test-Lab1/conformance-hidden-tests/main
     secrets:
       CI_TOKEN: ${{ secrets.CI_TOKEN }}
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
